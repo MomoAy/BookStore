@@ -10,16 +10,16 @@ const app = express();
 
 //Middleware pour l'utilisation de cors
 //Il ya deux manières d'utiliser cors
-//app.use(cors()); //1(Je vais pas écrire def là ici heun)
+app.use(cors()); //1(Je vais pas écrire def là ici heun)
 
 //2 & Recommandé
-app.use(cors(
-  {
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"]
-  }
-));
+// app.use(cors(
+//   {
+//     origin: "http://localhost:5173",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type"]
+//   }
+// ));
 
 //middleware pour parser le corps de notre requête
 app.use(express.json());
