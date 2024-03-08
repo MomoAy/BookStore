@@ -18,7 +18,6 @@ const Home = () => {
       .then((response) => {
         setBooks(response.data.data);
         setLoading(false);
-        console.log(books)
       })
       .catch((error) => {
         console.log(error);
