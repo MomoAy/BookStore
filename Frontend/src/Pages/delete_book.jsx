@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import axios from "axios";
 
@@ -15,12 +16,14 @@ const DeleteBook = () => {
       .delete(`http://localhost:8000/books/${id}`)
       .then(() => {
         setLoading(false);
+        enqueueSnackbar("Book deleted", { variant: 'success' });
         navigate("/");
       })
       .catch((err) => {
         setLoading(false);
         console.log(err);
-        alert("An error happened. Please try againPlease check the console");
+        enqueueSnackbar("Book not deleted", { variant: 'error' });
+        //alert("An error happened. Please try againPlease check the console");
       });
   }
   return (

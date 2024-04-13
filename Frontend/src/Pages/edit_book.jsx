@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSnackbar } from 'notistack';
 import axios from 'axios';
 
 import BackButton from "../Components/back_button";
@@ -30,7 +31,7 @@ const EditBook = () => {
         console.log(err);
       });
   }, []);
-
+  const { enqueueSnackbar } = useSnackbar();
   const handleUpdateBook = () => {
     const data = {
       title,
@@ -42,11 +43,13 @@ const EditBook = () => {
       .put(`http://localhost:8000/books/${id}`, data)
       .then(() => {
         setLoading(false);
+        enqueueSnackbar("Book updated", { variant: 'success' });
         navigate("/");
       })
       .catch((err) => {
         setLoading(false);
-        alert("An error happened. Please try againPlease check the console");
+        //alert("An error happened. Please try againPlease check the console");
+        enqueueSnackbar("Book not updated", { variant: 'error' });
         console.log(err);
       });
   }
